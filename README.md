@@ -594,3 +594,33 @@ Development workflow, changeset conventions, and the release process are documen
 
 - Check individual plugin README files in `plugins/` directory
 - Visit [Backstage documentation](https://backstage.io/docs) for general Backstage guidance
+
+## idp-lab portal fork
+
+Based on `v1.3.1`. Published additions only: GitLab scaffolder **0.12.0**,
+Roadie HTTP request scaffolder **5.9.0**, Vault frontend **0.25.0**.
+The upstream Jenkins frontend is retained at **0.28.0**; upstream already registers
+its frontend and backend. Jenkins requests from templates use Backstage's proxy.
+GitLab integration uses the `portal-bot` account scoped to the `systems` group.
+Vault listing and OpenBao links are configured by T6.12.
+
+Changed upstream files, sorted exactly as
+`git diff --name-only --diff-filter=M v1.3.1..HEAD`:
+
+```text
+README.md
+packages/portal-app/package.json
+packages/portal-app/src/createPortalApp.tsx
+packages/portal-backend/package.json
+packages/portal-backend/src/features.ts
+yarn.lock
+```
+
+README documents this fork; package manifests and yarn.lock record the additions;
+createPortalApp registers the published Vault frontend; features registers the
+published GitLab and HTTP request scaffolder modules. All deployment and pipeline
+files belonging to the lab are new files. The Jenkinsfile builds the unmodified
+upstream Dockerfile with the lab's pinned Node.js 24.22.0 build image and pushes
+`images/openchoreo-portal:<source commit>` to Nexus. Keep the T3.06 Helm post-renderer
+when deploying. Rebase on every adopted OpenChoreo release, retaining this list;
+offer the published-module registrations upstream so the fork can shrink.

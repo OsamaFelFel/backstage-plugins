@@ -43,6 +43,7 @@
     "@backstage/plugin-proxy-backend": "^0.6.13",
     "@backstage/plugin-scaffolder-backend": "^4.0.0",
     "@backstage/plugin-scaffolder-backend-module-github": "^0.9.9",
+    "@backstage/plugin-scaffolder-backend-module-gitlab": "0.12.0",
     "@backstage/plugin-search-backend": "^2.1.2",
     "@backstage/plugin-search-backend-module-catalog": "^0.3.15",
     "@backstage/plugin-search-backend-module-pg": "^0.5.55",
@@ -58,7 +59,8 @@
     "@openchoreo/backstage-plugin-permission-backend-module-openchoreo-policy": "workspace:^",
     "@openchoreo/backstage-plugin-platform-engineer-core-backend": "workspace:^",
     "@openchoreo/backstage-plugin-scaffolder-backend-module": "workspace:^",
-    "@openchoreo/openchoreo-auth": "workspace:^"
+    "@openchoreo/openchoreo-auth": "workspace:^",
+    "@roadiehq/scaffolder-backend-module-http-request": "5.9.0"
   },
   "devDependencies": {
     "@backstage/cli": "^0.36.2"

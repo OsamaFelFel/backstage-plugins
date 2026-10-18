@@ -31,6 +31,8 @@ export const portalFeatureLoaders = [
   () => import('@backstage/plugin-proxy-backend'),
   () => import('@backstage/plugin-scaffolder-backend'),
   () => import('@backstage/plugin-scaffolder-backend-module-github'),
+  () => import('@backstage/plugin-scaffolder-backend-module-gitlab'),
+  () => import('@roadiehq/scaffolder-backend-module-http-request'),
   () => import('@backstage/plugin-techdocs-backend'),
 
   // auth plugin

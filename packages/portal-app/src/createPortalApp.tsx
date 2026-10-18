@@ -32,6 +32,7 @@ import {
 
 import kubernetesPluginAlpha from '@backstage/plugin-kubernetes/alpha';
 import jenkinsPluginAlpha from '@backstage-community/plugin-jenkins/alpha';
+import vaultPluginAlpha from '@backstage-community/plugin-vault/alpha';
 import githubActionsPluginAlpha from '@backstage-community/plugin-github-actions/alpha';
 import gitlabPluginAlpha from '@immobiliarelabs/backstage-plugin-gitlab/alpha';
 import homePluginAlpha from '@backstage/plugin-home/alpha';
@@ -69,6 +70,7 @@ export function createPortalApp(options?: PortalAppOptions) {
       techdocsPluginAlpha,
       searchPluginAlpha,
       jenkinsPluginAlpha,
+      vaultPluginAlpha,
       githubActionsPluginAlpha,
       gitlabPluginAlpha,
       userSettingsPluginAlpha,
