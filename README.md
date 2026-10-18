@@ -598,7 +598,7 @@ Development workflow, changeset conventions, and the release process are documen
 ## idp-lab portal fork
 
 Based on `v1.3.1`. Published additions only: GitLab scaffolder **0.12.0**,
-Roadie HTTP request scaffolder **5.9.0**, Vault frontend **0.25.0**.
+Roadie HTTP request scaffolder **5.9.0**, Vault frontend **0.21.0** and backend **0.23.0**.
 The upstream Jenkins frontend is retained at **0.28.0**; upstream already registers
 its frontend and backend. Jenkins requests from templates use Backstage's proxy.
 GitLab integration uses the `portal-bot` account scoped to the `systems` group.
@@ -618,9 +618,9 @@ yarn.lock
 
 README documents this fork; package manifests and yarn.lock record the additions;
 createPortalApp registers the published Vault frontend; features registers the
-published GitLab and HTTP request scaffolder modules. All deployment and pipeline
+published GitLab and HTTP request scaffolder modules and Vault backend. All deployment and pipeline
 files belonging to the lab are new files. The Jenkinsfile builds the unmodified
-upstream Dockerfile with the lab's pinned Node.js 24.22.0 build image and pushes
+upstream Dockerfile with its approved, source-pinned Node22 build/runtime images and pushes
 `images/openchoreo-portal:<source commit>` to Nexus. Keep the T3.06 Helm post-renderer
 when deploying. Rebase on every adopted OpenChoreo release, retaining this list;
 offer the published-module registrations upstream so the fork can shrink.

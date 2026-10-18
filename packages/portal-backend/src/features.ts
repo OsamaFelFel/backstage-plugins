@@ -34,6 +34,7 @@ export const portalFeatureLoaders = [
   () => import('@backstage/plugin-scaffolder-backend-module-gitlab'),
   () => import('@roadiehq/scaffolder-backend-module-http-request'),
   () => import('@backstage/plugin-techdocs-backend'),
+  () => import('@backstage-community/plugin-vault-backend'),
 
   // auth plugin
   // See https://backstage.io/docs/backend-system/building-backends/migrating#the-auth-plugin
