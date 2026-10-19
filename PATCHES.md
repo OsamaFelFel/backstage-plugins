@@ -29,3 +29,15 @@ Upstream files changed:
 
 New file: `Jenkinsfile` builds the unmodified upstream Dockerfile with the pinned
 Node22 build and runtime images and pushes the image to Nexus.
+
+## 2. Templates open to any signed-in user (T6.05)
+
+Why: the stock policy lets a user run a template only with OpenChoreo API create
+rights. Our templates only open GitLab merge requests, so Git-only developers must
+be able to run them. Only scaffolder task submission changes: a signed-in user
+(`userEntityRef` present) may submit, anonymous submission is denied. Every
+OpenChoreo resource action keeps its own check; no API create right is granted.
+
+Upstream file changed:
+
+- `plugins/permission-backend-module-openchoreo-policy/src/policy/OpenChoreoPermissionPolicy.ts`: `handleScaffolderTaskCreate`.

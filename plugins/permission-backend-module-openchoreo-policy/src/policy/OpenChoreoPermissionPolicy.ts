@@ -379,53 +379,9 @@ export class OpenChoreoPermissionPolicy implements PermissionPolicy {
       return { result: AuthorizeResult.DENY };
     }
 
-    try {
-      const userToken = getUserTokenFromContext();
-      const capabilities = await this.authzService.getCapabilitiesForUser(
-        userEntityRef,
-        userToken,
-      );
-
-      // Check if user has any create capability for scaffolder resource types
-      const scaffolderCreateActions = [
-        'component:create',
-        'project:create',
-        'environment:create',
-        'trait:create',
-        'componenttype:create',
-        'resourcetype:create',
-        'resource:create',
-        'clustercomponenttype:create',
-        'clusterresourcetype:create',
-        'workflow:create',
-        'clusterworkflow:create',
-        'namespace:create',
-      ];
-
-      const hasAnyCreate = scaffolderCreateActions.some(action => {
-        const cap = resolveCapability(capabilities.capabilities, action);
-        // base-permit constrained allows so users whose only create grant
-        // carries an ABAC condition can still enter the scaffolder.
-        // The actual CEL evaluation happens when the template is selected and the form gathers the context.
-        const allowed = extractPaths(cap?.allowed);
-        const denied = unconstrainedPaths(cap?.denied);
-        return hasUncoveredAllowedPath(allowed, denied);
-      });
-
-      this.logger.debug(
-        `scaffolder.task.create: ${hasAnyCreate ? 'ALLOW' : 'DENY'}`,
-      );
-
-      return {
-        result: hasAnyCreate ? AuthorizeResult.ALLOW : AuthorizeResult.DENY,
-      };
-    } catch (error) {
-      this.logger.error(
-        'Error evaluating scaffolder.task.create permission',
-        error as Error,
-      );
-      return { result: AuthorizeResult.DENY };
-    }
+    // GitOps templates submit GitLab merge requests without OpenChoreo API create rights.
+    // Resource actions continue to enforce their own OpenChoreo authorization.
+    return { result: AuthorizeResult.ALLOW };
   }
 
   /**
