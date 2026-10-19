@@ -613,6 +613,7 @@ packages/portal-app/package.json
 packages/portal-app/src/createPortalApp.tsx
 packages/portal-backend/package.json
 packages/portal-backend/src/features.ts
+plugins/permission-backend-module-openchoreo-policy/src/policy/OpenChoreoPermissionPolicy.ts
 yarn.lock
 ```
 
@@ -624,3 +625,10 @@ upstream Dockerfile with its approved, source-pinned Node22 build/runtime images
 `images/openchoreo-portal:<source commit>` to Nexus. Keep the T3.06 Helm post-renderer
 when deploying. Rebase on every adopted OpenChoreo release, retaining this list;
 offer the published-module registrations upstream so the fork can shrink.
+
+T6.05 changes only `handleScaffolderTaskCreate` in
+`plugins/permission-backend-module-openchoreo-policy/src/policy/OpenChoreoPermissionPolicy.ts`
+to allow scaffolder task submission when a signed-in `userEntityRef` is present,
+and deny anonymous submission. Stock coupling of template use to OpenChoreo
+API create rights blocks Git-only users. Every OpenChoreo resource action keeps
+its existing authorization check; API create rights are not granted.
