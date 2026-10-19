@@ -41,3 +41,14 @@ OpenChoreo resource action keeps its own check; no API create right is granted.
 Upstream file changed:
 
 - `plugins/permission-backend-module-openchoreo-policy/src/policy/OpenChoreoPermissionPolicy.ts`: `handleScaffolderTaskCreate`.
+
+## 3. Generated "create" templates hidden (T6.10)
+
+Why: the entity provider generates one "create" template per component type, and
+those call OpenChoreo's API directly. Our portal is Git-only, so they are dropped
+from the provider's catalog output. Type entities and the Git templates we register
+stay.
+
+Upstream file changed:
+
+- `plugins/catalog-backend-module-openchoreo/src/provider/OpenChoreoEntityProvider.ts`: filter the generated Component Template entities.

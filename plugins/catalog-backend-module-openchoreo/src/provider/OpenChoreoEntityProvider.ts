@@ -1901,10 +1901,16 @@ export class OpenChoreoEntityProvider implements EntityProvider {
 
       await this.connection!.applyMutation({
         type: 'full',
-        entities: allEntities.map(entity => ({
-          entity,
-          locationKey: `provider:${this.getProviderName()}`,
-        })),
+        // Git-only creation uses our separately registered scaffolder templates.
+        entities: allEntities
+          .filter(
+            entity =>
+              entity.kind !== 'Template' || entity.spec?.type !== 'Component',
+          )
+          .map(entity => ({
+            entity,
+            locationKey: `provider:${this.getProviderName()}`,
+          })),
       });
 
       this.logEntityCounts(allEntities, domainEntities.length);
