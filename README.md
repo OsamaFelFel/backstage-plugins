@@ -613,6 +613,7 @@ packages/portal-app/package.json
 packages/portal-app/src/createPortalApp.tsx
 packages/portal-backend/package.json
 packages/portal-backend/src/features.ts
+plugins/catalog-backend-module-openchoreo/src/provider/OpenChoreoEntityProvider.ts
 plugins/permission-backend-module-openchoreo-policy/src/policy/OpenChoreoPermissionPolicy.ts
 yarn.lock
 ```
@@ -632,3 +633,8 @@ to allow scaffolder task submission when a signed-in `userEntityRef` is present,
 and deny anonymous submission. Stock coupling of template use to OpenChoreo
 API create rights blocks Git-only users. Every OpenChoreo resource action keeps
 its existing authorization check; API create rights are not granted.
+
+T6.10 filters provider-generated Component Template entities in
+`plugins/catalog-backend-module-openchoreo/src/provider/OpenChoreoEntityProvider.ts`
+from the provider full mutation. Their stock API create actions are not used in
+this Git-only portal. Type/catalog entities and separately registered Git templates remain.
